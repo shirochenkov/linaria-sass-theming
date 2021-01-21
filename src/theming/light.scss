@@ -1,0 +1,13 @@
+@import "./functions";
+
+$light: (
+  backgroundColor: color(white),
+  borderDark: color(tronDarkBlue),
+  borderLight: color(tronLightBlue),
+  textDark: color(black),
+  textLight: color(white),
+  backgroundDark: color(tronDarkBlue),
+  backgroundLight: color(tronLightBlue),
+  svgColor: color(purple),
+  buttonBackground: color(blackOverlay),
+);

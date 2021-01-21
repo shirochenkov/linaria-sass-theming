@@ -1,0 +1,6 @@
+@import "./colorDefinitions";
+
+//gets a color value from color map, defined in colorDefinitions
+@function color($colorName) {
+  @return map-get($colors, $colorName);
+}

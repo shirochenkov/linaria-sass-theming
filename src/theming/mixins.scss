@@ -1,0 +1,13 @@
+// mixins.scss
+@mixin generateThemeJSExports($themeName, $newThemeMap) {
+  //creates/adds to list of theme names
+  $themes: append($themes, $themeName, $separator: comma) !global;
+
+  //exports theme variables
+  :export {
+    themes: $themes;
+    @each $key, $value in $newThemeMap {
+      theme_#{$themeName}_#{$key}: $value;
+    }
+  }
+}

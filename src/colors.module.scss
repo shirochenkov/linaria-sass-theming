@@ -1,0 +1,9 @@
+@import "theming/mixins";
+
+$themes: ();
+
+@import "theming/light";
+@include generateThemeJSExports(light, $light);
+
+@import "theming/dark";
+@include generateThemeJSExports(dark, $dark);

@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useCallback, useEffect } from "react";
+import { styled } from "linaria/react";
+
+import theme, { initThemeObserver } from "./themeColors";
+
+import { Icon, SwitchTheme } from "./components";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.theme("backgroundColor")};
+  transition: background-color 300ms ease-in-out;
+`;
 
 function App() {
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
+
+  useEffect(() => {
+    document.documentElement.classList.add("light");
+  }, []);
+
+  useEffect(() => {
+    const themeObserver = initThemeObserver(forceUpdate);
+    return () => {
+      if (themeObserver) themeObserver.disconnect();
+    };
+  });
+
+  const toggleThemeType = () => {
+    document.documentElement.classList.toggle("light");
+    document.documentElement.classList.toggle("dark");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper theme={theme}>
+      <Icon />
+      <SwitchTheme toggleThemeType={toggleThemeType} />
+    </Wrapper>
   );
 }
 
