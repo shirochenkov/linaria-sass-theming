@@ -17,19 +17,19 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  // const [, updateState] = useState();
-  // const forceUpdate = useCallback(() => updateState({}), []);
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   useEffect(() => {
     document.documentElement.classList.add("light");
   }, []);
 
-  // useEffect(() => {
-  //   const themeObserver = initThemeObserver(forceUpdate);
-  //   return () => {
-  //     if (themeObserver) themeObserver.disconnect();
-  //   };
-  // });
+  useEffect(() => {
+    const themeObserver = initThemeObserver(forceUpdate);
+    return () => {
+      if (themeObserver) themeObserver.disconnect();
+    };
+  });
 
   const toggleThemeType = () => {
     document.documentElement.classList.toggle("light");
